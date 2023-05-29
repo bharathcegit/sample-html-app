@@ -1,0 +1,25 @@
+- name: Install Nginx and Deploy HTML
+  hosts: nginx_servers
+  become: yes
+
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Copy HTML file to Nginx web root
+      copy:
+        src: ~/ci-cd-nginx/index.html
+        dest: /var/www/html/index.html
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted

@@ -1,0 +1,31 @@
+pipeline 
+{
+   agent 
+    {
+        node 
+        {
+            label 't054-runner'
+        }
+    }
+   stages 
+   {
+      stage('Preparation') 
+      {
+         steps 
+         {
+            cleanWs()
+            git credentialsId: '', branch: 'develop', url: ""
+         }
+      }
+        stage('Deploy on nginx') 
+        {
+         steps 
+         {
+            withCredentials([usernamePassword(credentialsId: 'ansible-credentials', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASSWORD')])
+            {
+                ansible-playbook -i Inventory deploy-on-tomcat.yaml
+            }
+         }
+        }
+    }
+}
