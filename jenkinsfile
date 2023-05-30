@@ -1,16 +1,18 @@
 pipeline 
 {
-    agent {
+    agent 
+    {
         node {
             label 't054-runner'
         }
     }
-    stages {
+    stages 
+    {
         stage('checkout') 
         {
             steps 
             {
-                git credentialsId: 'gitlab', branch: 'master', url: "https://git.cloudavise.com/visops/t054/ci-cd-nginx.git"
+                git credentialsId: 'ca-git-access', branch: 'master', url: "https://git.cloudavise.com/visops/t054/ci-cd-nginx.git"
             }
         }
         stage('deploy') 
