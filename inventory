@@ -1,3 +1,6 @@
-nginx
+; -*-mode: ansible; coding: utf-8;-*-
+
+
+[nginx]
 
 nginx-server     nginx_host=3.83.220.221      nginx_port=80     nginx_user=ubuntu     nginx_ssh_private_key_file="/home/ubuntu/new_key.pem"
