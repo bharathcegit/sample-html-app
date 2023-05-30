@@ -1,5 +1,5 @@
 - name: Install Nginx and Deploy HTML
-  hosts: nginx_servers
+  hosts: nginx
   become: yes
 
   tasks:
