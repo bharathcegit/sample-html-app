@@ -19,7 +19,7 @@ pipeline
         {
             steps 
             {
-                sh "ansible-playbook -i inventory deployment-on-nginx.yml"
+                sh "ansible-playbook -i inventory deploy-on-nginx.yml"
             }
         }
     }
