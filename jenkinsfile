@@ -1,31 +1,24 @@
 pipeline 
 {
-   agent 
-    {
-        node 
-        {
+    agent {
+        node {
             label 't054-runner'
         }
     }
-   stages 
-   {
-      stage('Preparation') 
-      {
-         steps 
-         {
-            cleanWs()
-            git credentialsId: '', branch: 'develop', url: ""
-         }
-      }
-        stage('Deploy on nginx') 
+    stages {
+        stage('checkout') 
         {
-         steps 
-         {
-            withCredentials([usernamePassword(credentialsId: 'ansible-credentials', usernameVariable: 'ANSIBLE_USER', passwordVariable: 'ANSIBLE_PASSWORD')])
+            steps 
             {
-                ansible-playbook -i Inventory deploy-on-tomcat.yaml
+                git credentialsId: 'gitlab', branch: 'master', url: "https://git.cloudavise.com/visops/t054/ci-cd-nginx.git"
             }
-         }
+        }
+        stage('deploy') 
+        {
+            steps 
+            {
+                sh "ansible-playbook -i inventory deployment-on-nginx.yml"
+            }
         }
     }
 }
