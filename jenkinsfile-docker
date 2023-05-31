@@ -1,0 +1,26 @@
+pipeline 
+{
+    agent 
+    {
+        node {
+            label 't054-runner'
+        }
+    }
+    stages 
+    {
+        stage('checkout') 
+        {
+            steps 
+            {
+                git credentialsId: 'ca-git-access', branch: 'deploy-ondocker', url: "https://git.cloudavise.com/visops/t054/ci-cd-nginx.git"
+            }
+        }
+        stage('deploy') 
+        {
+            steps 
+            {
+                sh "ansible-playbook -i inventory deploy-on-docker.yml"
+            }
+        }
+    }
+}
