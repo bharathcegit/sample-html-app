@@ -60,7 +60,10 @@
 
 
     - name: Build Docker image
-      command: docker build -t my-nginx-image /home/ubuntu .
+      command: docker build -t my-nginx-image /home/ubuntu/
+      args:
+        chdir: /home/ubuntu/
+
 
     - name: Run NGINX container
       docker_container:
