@@ -12,7 +12,7 @@ pipeline
         {
             steps 
             {
-                git credentialsId: 'ca-git-access', branch: 'deploy-ondocker', url: "https://git.cloudavise.com/visops/t054/ci-cd-nginx.git"
+                git credentialsId: 'ca-git-access', branch: 'deploy-on-docker', url: "https://git.cloudavise.com/visops/t054/ci-cd-nginx.git"
             }
         }
         stage('deploy') 
