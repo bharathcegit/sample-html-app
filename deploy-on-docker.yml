@@ -36,12 +36,11 @@
         name: docker-ce
         state: present
 
-     - name: Add Ubuntu user to Docker group
+    - name: Add Ubuntu user to Docker group
       user:
         name: ubuntu
         groups: docker
         append: yes
-
 
     - name: Ensure Docker service is running and enabled
       service:
@@ -49,26 +48,22 @@
         state: started
         enabled: yes
 
+- name: Build Docker image and run container
+  hosts: nginx
+  become: yes
+  tasks:
+    - name: Copy Dockerfile
+      copy:
+        src: Dockerfile
+        dest: /home/ubuntu
 
-    - name: Build Docker image and run container
-      hosts: nginx
-      become: yes
+    - name: Copy index.html
+      copy:
+        src: index.html
+        dest: /home/ubuntu
 
-      tasks:
-      - name: Copy Dockerfile
-        copy:
-          src: Dockerfile
-          dest: /home/ubuntu
+    - name: Build Docker image
+      command: docker build -t nginx:v1 /home/ubuntu/.
 
-      - name: Copy index.html
-        copy:
-          src: index.html
-          dest: /home/ubuntu
-
-
-      - name: Build Docker image
-        command: docker build -t nginx:v1 /home/ubuntu/.
-        
-
-      - name: Run Docker image
-        command: docker run -d -p 8001:80 nginx:v1
+    - name: Run Docker image
+      command: docker run -d -p 8001:80 nginx:v1
