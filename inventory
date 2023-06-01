@@ -3,4 +3,4 @@
 
 [nginx]
 
-nginx-server    ansible_host=3.83.220.221   ansible_port=22     ansible_user=ubuntu     ansible_ssh_private_key_file="/home/ubuntu/new_key.pem"
+nginx-server    ansible_host=34.226.245.7   ansible_port=22     ansible_user=ubuntu     ansible_ssh_private_key_file="/home/ubuntu/new_key.pem"
