@@ -14,6 +14,8 @@ pipeline
         {
             steps 
             {
+                sh 'ansible-vault decrypt --vault-id /tmp/vault-id newkey.pem'
+                sh 'chmod 400 newkey.pem'
                 sh "ansible-playbook -i inventory ansible-installation.yml"
             }
         }
@@ -21,6 +23,8 @@ pipeline
         {
             steps 
             {
+                sh 'ansible-vault decrypt --vault-id /tmp/vault-id new_key.pem'
+                sh 'chmod 400 new_key.pem'
                 sh "ansible-playbook -i inventory deploy-on-nginx.yml"
             }
         }
