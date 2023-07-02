@@ -14,7 +14,7 @@
 
     - name: Copy HTML file to Nginx web root
       copy:
-        src: /opt/jenkins/workspace/VisOps/t054/nginx-manual-deployment/index.html
+        src: /var/lib/jenkins/workspace/sample-html-app/index.html
         dest: /var/www/html/index.html
       notify: Restart Nginx
 
