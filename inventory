@@ -1,5 +1,10 @@
 ; -*-mode: ansible; coding: utf-8;-*-
 
+[jenkins]
+
+jenkins-server    ansible_host=54.205.173.140   ansible_port=22     ansible_user=ubuntu     ansible_ssh_private_key_file="/home/ubuntu/newkey.pem"
+
+
 
 [nginx]
 
