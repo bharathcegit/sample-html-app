@@ -10,6 +10,13 @@ pipeline
                 git branch: 'deploy-on-nginx', url: "https://github.com/bharathcegit/sample-html-app.git"
             }
         }
+        stage('installation') 
+        {
+            steps 
+            {
+                sh "ansible-playbook -i inventory ansible-installation.yml"
+            }
+        }
         stage('deploy') 
         {
             steps 
